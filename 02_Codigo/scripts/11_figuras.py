@@ -51,7 +51,7 @@ caja(ax, 1.85, 1.95, 1.5, 0.48, "Rasgos y TSB/SES", C[0], "OpenMP (C) / Numba-om
 caja(ax, 0.05, 1.22, 1.5, 0.5, "Motor de tareas", C[0], "MPI: SARIMAX, Prophet")
 caja(ax, 1.85, 1.22, 1.5, 0.5, "LSTM global / híbrido", C[0], "PyTorch CUDA (o CPU)")
 caja(ax, 0.05, 0.5, 3.3, 0.48, "Evaluación (origen móvil) · pruebas H1–H3 · simulación (R,S)", C[2])
-caja(ax, 0.6, 0.0, 2.2, 0.36, "Tablero de alertas de reabastecimiento", C[2])
+caja(ax, 0.45, 0.0, 2.5, 0.36, "Plataforma web DemandAI · alertas y pedidos", C[2])
 flecha(ax, 0.8, 2.65, 0.8, 2.43); flecha(ax, 2.6, 2.65, 2.6, 2.43); flecha(ax, 1.55, 2.19, 1.85, 2.19)
 flecha(ax, 0.8, 1.95, 0.8, 1.72); flecha(ax, 2.6, 1.95, 2.6, 1.72); flecha(ax, 1.55, 2.05, 1.85, 1.6)
 flecha(ax, 0.8, 1.22, 0.8, 0.98); flecha(ax, 2.6, 1.22, 2.6, 0.98); flecha(ax, 1.7, 0.5, 1.7, 0.36)
