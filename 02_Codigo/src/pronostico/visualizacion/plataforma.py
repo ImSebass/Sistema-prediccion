@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import json
 import math
+import os
 import pickle
 from datetime import datetime, timezone
 from pathlib import Path
@@ -31,6 +32,9 @@ from pronostico.config import CFG_DATOS, CFG_EXP, EXOGENAS, PROCESADOS, RESULTAD
 from pronostico.inventario.simulacion import LT, MARGEN, R, TASA_MANTENER_DIA, Z
 
 DIAS_HISTORIA_SKU = 182          # historia por SKU enviada a la interfaz (detalle y gráficas)
+# Con exportaciones POS reales, ejecutar el script 13 con DEMANDAI_DATOS_SINTETICOS=0 retira el aviso
+# de "datos sintéticos" de la interfaz.
+DATOS_SINTETICOS = os.environ.get("DEMANDAI_DATOS_SINTETICOS", "1") != "0"
 
 NOMBRES_MODELO = {
     "ingenuo_s7": "Ingenuo estacional", "media_movil28": "Media móvil 28", "tsb": "TSB",
@@ -203,9 +207,10 @@ def construir_paquete() -> dict:
     paquete = {
         "meta": {
             "generado": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-            "datos_sinteticos": True,
+            "datos_sinteticos": DATOS_SINTETICOS,
             "nota_datos": ("Datos SINTÉTICOS calibrados al comercio fronterizo de Cúcuta "
-                           "(generador del proyecto). Sustituir por exportaciones POS reales."),
+                           "(generador del proyecto). Sustituir por exportaciones POS reales.")
+                          if DATOS_SINTETICOS else "Exportaciones POS del comercio.",
             "inicio": fechas[0].date().isoformat(), "fin": fechas[-1].date().isoformat(), "dias": int(n),
             "historia_sku_desde": int(h0),
             "politica": {"R": R, "L": LT, "z": Z, "nivel_servicio": 0.95,

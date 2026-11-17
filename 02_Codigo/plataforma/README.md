@@ -57,6 +57,8 @@ archivos. El exportador es el único punto de integración; si un artefacto falt
   fracción serial de Karp–Flatt) y se dibujan con línea discontinua.
 - El "nivel de servicio" es el fill rate del modelo en producción en la simulación de validación.
 - El stock actual es simulado por el script 12 hasta conectar el POS/ERP; la interfaz lo indica.
+- El aviso «Datos sintéticos de demostración» se retira, solo con datos reales, generando la plataforma con
+  `DEMANDAI_DATOS_SINTETICOS=0 python scripts/13_plataforma_web.py`.
 - La comparación de modelos separa el rendimiento predictivo (WAPE, MASE, RMSE, sesgo) del impacto
   económico (fill rate, costo de mantener y de venta perdida).
 
