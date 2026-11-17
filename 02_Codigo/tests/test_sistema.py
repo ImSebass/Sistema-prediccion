@@ -79,3 +79,41 @@ def test_simulacion_inventario_pronostico_perfecto_sirve_casi_todo():
     d = rng.poisson(10, (50, 28)).astype(float)
     r = simular(d, d.copy(), np.full(50, 3.0), np.full(50, 1000.0))
     assert r["fill_rate"] > 0.97
+
+
+# ------------------------------------------------------------------ plataforma web
+def _paquete():
+    from pronostico.config import RESULTADOS
+    if not (RESULTADOS / "produccion" / "pronostico_28d.parquet").exists():
+        pytest.skip("requiere ejecutar scripts/12_produccion_y_alertas.py")
+    from pronostico.visualizacion.plataforma import construir_paquete
+    return construir_paquete()
+
+
+def test_plataforma_json_estricto_y_completo():
+    import json
+    p = _paquete()
+    json.dumps(p, allow_nan=False)          # sin NaN/inf: el navegador lo puede leer
+    for k in ("meta", "productos", "agregados", "pronostico", "inventario", "precision", "benchmark"):
+        assert p[k] is not None, k
+    assert len(p["productos"]["sku"]) == len(p["productos"]["historia"])
+    assert all(len(v) == p["meta"]["horizonte"] for v in p["pronostico"]["valores"])
+
+
+def test_plataforma_no_altera_alertas_del_motor():
+    """Las alertas y prioridades críticas que muestra la web son las del script 12."""
+    from pronostico.config import RESULTADOS
+    p = _paquete()
+    ped = pd.read_csv(RESULTADOS / "inventario" / "pedidos_sugeridos.csv")
+    inv = p["inventario"]
+    assert sum(inv["alerta"]) == int(ped["alerta"].sum())
+    assert inv["prioridad"].count("critica") == int((ped["prioridad"] == "CRÍTICA").sum())
+    assert sum(inv["pedido"]) == pytest.approx(ped["pedido_sugerido"].sum())
+
+
+def test_plataforma_html_autocontenido(tmp_path):
+    from pronostico.visualizacion.plataforma import construir_html, escribir
+    datos = escribir(tmp_path / "datos.js") if _paquete() else None
+    html = construir_html(datos=datos, destino=tmp_path / "DemandAI.html").read_text(encoding="utf-8")
+    assert '<script src=' not in html and '<link rel="stylesheet"' not in html
+    assert "window.DEMANDAI=" in html and "font/woff2;base64" in html

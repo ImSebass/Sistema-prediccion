@@ -5,13 +5,17 @@
    sobre TODAS las series y pronostica desde la fecha de corte.
 2. El inventario actual se toma de la simulación (R, S) del último periodo
    (en operación real vendría del POS/ERP del comercio).
-3. Genera `resultados/alertas_reabastecimiento.html` y un CSV de pedidos.
+3. Genera `resultados/alertas_reabastecimiento.html`, un CSV de pedidos y
+   `resultados/produccion/` (pronóstico de 28 días por SKU y metadatos de la
+   ejecución), que consume la plataforma web DemandAI (script 13).
 
     python scripts/12_produccion_y_alertas.py
 """
 import json
 import os
 import sys
+import time
+from datetime import datetime, timezone
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 import numpy as np  # noqa: E402
@@ -23,6 +27,7 @@ from pronostico.inventario.simulacion import LT, R, Z  # noqa: E402
 from pronostico.modelos.lstm_global import entrenar_y_predecir  # noqa: E402
 from pronostico.visualizacion.dashboard import alertas, generar_html  # noqa: E402
 
+T0 = time.perf_counter()
 D = cargar()
 h = CFG_EXP.horizonte
 n = D.Y.shape[1]
@@ -50,4 +55,20 @@ if tab is not None:
     met["WAPE validación (ingenuo)"] = f"{tab.loc['Ingenuo estacional', 'WAPE']:.3f}"
 fecha = (D.fechas[-1] + pd.Timedelta(days=1)).date().isoformat()
 generar_html(df, P, met, RESULTADOS / "alertas_reabastecimiento.html", fecha)
+
+# Persistencia del pronóstico de producción y metadatos (consumidos por la plataforma web)
+PROD = RESULTADOS / "produccion"
+PROD.mkdir(parents=True, exist_ok=True)
+dias = pd.date_range(fecha, periods=h, freq="D").strftime("%Y-%m-%d")
+pd.DataFrame(np.round(P, 3), index=cat["sku"], columns=dias).to_parquet(PROD / "pronostico_28d.parquet")
+pd.DataFrame({"sku": cat["sku"], "sigma": np.round(sigma, 4)}).to_parquet(PROD / "sigma.parquet", index=False)
+meta = {"ejecutado": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "fecha_corte": fecha, "ultimo_dato": D.fechas[-1].date().isoformat(), "horizonte": h,
+        "modelo": "lstm_exog", "modelo_nombre": "LSTM global + exógenas",
+        "series_pronosticadas": int(len(activas)), "series_totales": int(len(D.Y)),
+        "dispositivo": info["dispositivo"], "t_entrenamiento_s": round(info["t_entrenamiento"], 2),
+        "t_total_s": round(time.perf_counter() - T0, 2),
+        "politica": {"R": R, "L": LT, "z": Z},
+        "inventario_actual": "simulado (cobertura uniforme 0-21 días de la demanda reciente); en operación proviene del POS/ERP"}
+(PROD / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")
 print({"alertas": int(df["alerta"].sum()), "criticas": int((df["prioridad"] == "CRÍTICA").sum()), **info})

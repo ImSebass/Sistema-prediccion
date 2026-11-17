@@ -32,10 +32,11 @@ src/pronostico/
   evaluacion/               métricas (WAPE, MASE, RMSE, sesgo) y pruebas estadísticas
   inventario/               simulación de política (R, S)
   benchmark/                protocolo de medición, Amdahl, Gustafson, Karp–Flatt
-  visualizacion/            estilo de figuras y tablero HTML de alertas
+  visualizacion/            estilo de figuras, tablero HTML de alertas y exportador de la plataforma web
 scripts/                    01…12: pipeline completo (ver run_all.sh)
 tests/                      pruebas unitarias (pytest)
-resultados/                 JSON/CSV de benchmarks, precisión, inventario; tablero de alertas
+resultados/                 JSON/CSV de benchmarks, precisión, inventario, producción; tablero de alertas
+plataforma/                 plataforma web DemandAI (src/ y dist/DemandAI.html autocontenido)
 figuras/                    figuras del artículo (300 ppp)
 docker/Dockerfile           imagen CUDA + OpenMPI + Python
 config/nodos_ejemplo.txt    hostfile para el clúster de 4 nodos
@@ -48,7 +49,7 @@ python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt          # requiere OpenMPI instalado (o: pip install openmpi)
 gcc -O3 -march=native -fopenmp -shared -fPIC src/pronostico/features/kernel_omp.c \
     -o src/pronostico/features/libkernel_omp.so -lm   # (se compila solo si falta)
-PYTHONPATH=src pytest -q                 # 8 pruebas
+PYTHONPATH=src pytest -q                 # 11 pruebas
 ```
 
 Con Docker y GPU: `docker build -f docker/Dockerfile -t pronostico . && docker run --gpus all pronostico`.
@@ -77,7 +78,8 @@ Pasos individuales (todos con `PYTHONPATH=src`):
 | `09_analisis_hipotesis.py` | Tablas de precisión y pruebas H1–H3 | OE4 |
 | `10_inventario.py` | Simulación (R, S): nivel de servicio y costo | OE4 |
 | `11_figuras.py` | Figuras 3–7 | — |
-| `12_produccion_y_alertas.py` | Pronóstico de producción y `resultados/alertas_reabastecimiento.html` | Despliegue |
+| `12_produccion_y_alertas.py` | Pronóstico de producción (`resultados/produccion/`) y `resultados/alertas_reabastecimiento.html` | Despliegue |
+| `13_plataforma_web.py` | Plataforma web DemandAI: exporta los resultados y genera `plataforma/dist/DemandAI.html` (`--servir` para abrirla en localhost) | Despliegue |
 
 ## Protocolo experimental
 

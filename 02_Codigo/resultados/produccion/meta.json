@@ -1,0 +1,19 @@
+{
+ "ejecutado": "2026-11-17T14:49:18+00:00",
+ "fecha_corte": "2026-07-01",
+ "ultimo_dato": "2026-06-30",
+ "horizonte": 28,
+ "modelo": "lstm_exog",
+ "modelo_nombre": "LSTM global + exógenas",
+ "series_pronosticadas": 1278,
+ "series_totales": 1280,
+ "dispositivo": "cpu",
+ "t_entrenamiento_s": 100.0,
+ "t_total_s": 138.92,
+ "politica": {
+  "R": 7,
+  "L": 3,
+  "z": 1.645
+ },
+ "inventario_actual": "simulado (cobertura uniforme 0-21 días de la demanda reciente); en operación proviene del POS/ERP"
+}

@@ -20,4 +20,5 @@ python scripts/08_benchmark_lstm.py                      # H1: LSTM CPU/GPU, equ
 python scripts/09_analisis_hipotesis.py                  # H1–H3
 python scripts/10_inventario.py                          # OE4: inventario
 python scripts/11_figuras.py                             # figuras del artículo
-python scripts/12_produccion_y_alertas.py                # despliegue: tablero de alertas
+python scripts/12_produccion_y_alertas.py                # despliegue: pronóstico de producción y alertas
+python scripts/13_plataforma_web.py                      # plataforma web DemandAI (plataforma/dist/DemandAI.html)

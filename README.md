@@ -15,7 +15,7 @@ Prophet-LSTM) con los tres paradigmas de la asignatura: **OpenMP** (kernel en C 
 | Carpeta | Contenido |
 |---|---|
 | [`01_Documento/`](01_Documento) | Artículo IEEE: versión original (V1), versión corregida y completa (V2, .docx y .pdf) y registro de cambios V1 → V2 |
-| [`02_Codigo/`](02_Codigo) | Código fuente, scripts del pipeline (01–12), pruebas, Dockerfile, datos procesados, resultados y figuras. Ver su [README](02_Codigo/README.md) |
+| [`02_Codigo/`](02_Codigo) | Código fuente, scripts del pipeline (01–13), pruebas, Dockerfile, datos procesados, resultados, figuras y la plataforma web **DemandAI** ([`02_Codigo/plataforma/`](02_Codigo/plataforma)). Ver su [README](02_Codigo/README.md) |
 | [`03_Documentacion/`](03_Documentacion) | Carta de presentación del software, manual de usuario, manual de instalación, carta de perfil de los autores y carta de declaración de uso de IA |
 | [`04_Presentacion/`](04_Presentacion) | Presentación para la sustentación (16 diapositivas, con notas del orador) |
 
@@ -25,9 +25,12 @@ Prophet-LSTM) con los tres paradigmas de la asignatura: **OpenMP** (kernel en C 
 cd 02_Codigo
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt            # requiere OpenMPI
-PYTHONPATH=src pytest -q                   # 8 pruebas
+PYTHONPATH=src pytest -q                   # 11 pruebas
 bash scripts/run_all.sh                    # pipeline completo en la máquina local
 ```
+
+**Plataforma web:** abra `02_Codigo/plataforma/dist/DemandAI.html` en el navegador (funciona sin conexión),
+o ejecute `python scripts/13_plataforma_web.py --servir` desde `02_Codigo/`.
 
 El manual de instalación (`03_Documentacion/03_Manual_de_instalacion.docx`) cubre la instalación en Linux,
 Windows (WSL2), Docker con GPU y el clúster de 4 nodos.
