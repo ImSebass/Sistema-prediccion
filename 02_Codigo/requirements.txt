@@ -10,5 +10,6 @@ numba>=0.59
 mpi4py>=4.0          # requiere OpenMPI (apt install libopenmpi-dev openmpi-bin, o pip install openmpi)
 torch>=2.2           # build con CUDA para usar GPU NVIDIA
 matplotlib>=3.8
+scikit-learn>=1.4    # agrupamiento (scripts/14_clustering.py)
 pyyaml>=6
 pytest>=8

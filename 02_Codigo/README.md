@@ -80,6 +80,7 @@ Pasos individuales (todos con `PYTHONPATH=src`):
 | `11_figuras.py` | Figuras 3–7 | — |
 | `12_produccion_y_alertas.py` | Pronóstico de producción (`resultados/produccion/`) y `resultados/alertas_reabastecimiento.html` | Despliegue |
 | `13_plataforma_web.py` | Plataforma web DemandAI: exporta los resultados y genera `plataforma/dist/DemandAI.html` (`--servir` para abrirla en localhost) | Despliegue |
+| `14_clustering.py` | Agrupamiento de las 1 280 series (k-means y jerárquico de Ward, silueta, ARI) y mejor modelo por grupo → `resultados/clustering/`, Fig. 8 | Sistemas Inteligentes |
 
 ## Protocolo experimental
 

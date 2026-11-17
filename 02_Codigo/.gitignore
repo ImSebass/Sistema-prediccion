@@ -1,6 +1,7 @@
 __pycache__/
 *.pyc
 *.so
+*.dll
 .pytest_cache/
 # POS crudo sintético (≈71 MB): se regenera de forma determinista con scripts/01_generar_datos.py
 datos/crudos/

@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import ctypes
 import os
+import shutil
 import subprocess
 from pathlib import Path
 
@@ -23,7 +24,8 @@ os.environ.setdefault("NUMBA_THREADING_LAYER", "omp")
 
 _DIR = Path(__file__).resolve().parent
 _SRC = _DIR / "kernel_omp.c"
-_LIB = _DIR / "libkernel_omp.so"
+_WINDOWS = os.name == "nt"
+_LIB = _DIR / ("kernel_omp.dll" if _WINDOWS else "libkernel_omp.so")
 _lib = None
 
 ALFAS = np.linspace(0.02, 0.50, 25).astype(np.float32)
@@ -32,15 +34,28 @@ BETAS = np.linspace(0.01, 0.40, 25).astype(np.float32)
 
 def compilar(forzar: bool = False) -> Path:
     if forzar or not _LIB.exists() or _LIB.stat().st_mtime < _SRC.stat().st_mtime:
-        subprocess.run(["gcc", "-O3", "-march=native", "-fopenmp", "-shared", "-fPIC",
+        # En Windows (MinGW-w64) no se usa -fPIC: todo el código de una DLL ya es reubicable.
+        pic = [] if _WINDOWS else ["-fPIC"]
+        subprocess.run(["gcc", "-O3", "-march=native", "-fopenmp", "-shared", *pic,
                         str(_SRC), "-o", str(_LIB), "-lm"], check=True)
     return _LIB
+
+
+def _carpeta_runtime_gcc() -> None:
+    """Windows: Python >= 3.8 no busca en PATH las DLL de las que depende la
+    biblioteca (libgomp-1.dll, libwinpthread-1.dll); se añade la carpeta de gcc."""
+    if _WINDOWS:
+        gcc = shutil.which("gcc")
+        if gcc:
+            os.add_dll_directory(str(Path(gcc).parent))
 
 
 def _cargar():
     global _lib
     if _lib is None:
-        _lib = ctypes.CDLL(str(compilar()))
+        lib = compilar()
+        _carpeta_runtime_gcc()
+        _lib = ctypes.CDLL(str(lib))
         f32 = np.ctypeslib.ndpointer(np.float32, flags="C_CONTIGUOUS")
         i32 = np.ctypeslib.ndpointer(np.int32, flags="C_CONTIGUOUS")
         c_int = ctypes.c_int

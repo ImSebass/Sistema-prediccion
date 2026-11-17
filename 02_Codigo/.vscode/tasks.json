@@ -1,0 +1,36 @@
+{
+  "version": "2.0.0",
+  "options": {
+    "env": { "PYTHONPATH": "src" }
+  },
+  "tasks": [
+    {
+      "label": "Generar plataforma",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["scripts/13_plataforma_web.py"],
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Servir plataforma (localhost:8765)",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["-u", "-m", "http.server", "8765", "--bind", "127.0.0.1", "--directory", "plataforma/dist"],
+      "dependsOn": "Generar plataforma",
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": { "regexp": "^__nunca__$" },
+        "background": { "activesBegin": true, "beginsPattern": "^Serving HTTP", "endsPattern": "^Serving HTTP" }
+      }
+    },
+    {
+      "label": "Pruebas",
+      "type": "process",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["-m", "pytest", "-q"],
+      "group": "test",
+      "problemMatcher": []
+    }
+  ]
+}

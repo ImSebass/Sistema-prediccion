@@ -21,4 +21,5 @@ python scripts/09_analisis_hipotesis.py                  # H1–H3
 python scripts/10_inventario.py                          # OE4: inventario
 python scripts/11_figuras.py                             # figuras del artículo
 python scripts/12_produccion_y_alertas.py                # despliegue: pronóstico de producción y alertas
-python scripts/13_plataforma_web.py                      # plataforma web DemandAI (plataforma/dist/DemandAI.html)
+python scripts/14_clustering.py                          # Sistemas Inteligentes: k-means y jerárquico (Fig. 8)
+python scripts/13_plataforma_web.py                     # plataforma web DemandAI (plataforma/dist/DemandAI.html)
