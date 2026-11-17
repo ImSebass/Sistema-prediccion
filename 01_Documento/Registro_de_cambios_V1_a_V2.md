@@ -75,3 +75,17 @@ encabezados y pie de página). Estos son los cambios y su justificación.
 2. Sustituir los datos sintéticos por exportaciones POS reales y las series macro por las oficiales
    (`cargar_exogenas_reales`), firmar los acuerdos de confidencialidad y repetir el pipeline.
 3. Revisar en Word la tabla de contenido (clic derecho → *Actualizar campos*) si se edita el documento.
+
+## 7. Actualización del 17 de noviembre de 2026: plataforma web DemandAI
+
+El tablero HTML de alertas se reemplazó por la plataforma web DemandAI como módulo de visualización. El artículo se
+ajustó en consecuencia, sin cambiar ningún resultado ni la estructura:
+
+| Sección | Cambio |
+| --- | --- |
+| III-B Situación deseada | El servicio centralizado devuelve una plataforma web con pronósticos y alertas, no un tablero |
+| VI Metodología (fase de despliegue) y Tabla VI (OE3) | El entregable pasa a ser «Motor distribuido y plataforma web DemandAI» |
+| VII (introducción) | Pipeline numerado de 01 a 13 y carpeta `plataforma` |
+| VII-C Despliegue y visualización | Descripción de DemandAI (exportador, archivo autocontenido, siete módulos, separación entre medido y proyectado) y 11 pruebas unitarias |
+| Fig. 3 | La capa de presentación se rotula «Plataforma web DemandAI · alertas y pedidos» |
+| IX Conclusión 1 y recomendación de operación | Entrega por DemandAI; conectar la plataforma a PostgreSQL con cuentas por establecimiento |
