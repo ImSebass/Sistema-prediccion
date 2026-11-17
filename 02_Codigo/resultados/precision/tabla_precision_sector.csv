@@ -1,0 +1,31 @@
+,modelo,WAPE,MASE_media,MASE_mediana,RMSE_media,Sesgo
+abarrotes,SARIMAX + exóg.,0.4602,0.8281,0.8194,4.2432,-0.1298
+abarrotes,SARIMAX,0.4621,0.8283,0.8238,4.2883,-0.1650
+abarrotes,LSTM,0.4652,0.8316,0.8182,4.3226,-0.1762
+abarrotes,LSTM + exóg.,0.4670,0.8353,0.8236,4.2751,-0.1166
+abarrotes,Prophet,0.4728,0.8501,0.8398,4.2258,-0.0137
+abarrotes,Prophet + exóg.,0.4747,0.8540,0.8452,4.2832,-0.0625
+abarrotes,Híbrido Prophet-LSTM,0.4760,0.8545,0.8434,4.3379,-0.1055
+abarrotes,TSB,0.4828,0.8567,0.8432,4.4054,-0.1030
+abarrotes,Media móvil 28,0.4874,0.8677,0.8535,4.4111,-0.0756
+abarrotes,Ingenuo estacional,0.6351,1.1319,1.1007,5.7110,-0.0366
+ropa,LSTM + exóg.,0.9057,0.7726,0.7725,1.2719,-0.3912
+ropa,LSTM,0.9059,0.7752,0.7632,1.2782,-0.4255
+ropa,SARIMAX,0.9548,0.8640,0.8383,1.2415,-0.1876
+ropa,Híbrido Prophet-LSTM,0.9618,0.8269,0.8138,1.3106,-0.2747
+ropa,SARIMAX + exóg.,0.9671,0.8849,0.8605,1.2439,-0.1476
+ropa,TSB,0.9942,0.8988,0.8687,1.2631,-0.1033
+ropa,Prophet,1.0045,0.9146,0.8913,1.2683,-0.0255
+ropa,Media móvil 28,1.0063,0.9065,0.8808,1.2763,-0.0825
+ropa,Prophet + exóg.,1.0161,0.9134,0.8923,1.2928,-0.0348
+ropa,Ingenuo estacional,1.2394,1.0473,1.0124,1.7027,-0.0098
+calzado,LSTM + exóg.,0.9659,0.7844,0.7746,1.0923,-0.4319
+calzado,LSTM,0.9699,0.7902,0.7825,1.0991,-0.4676
+calzado,Híbrido Prophet-LSTM,1.0204,0.8418,0.8227,1.1139,-0.3199
+calzado,SARIMAX,1.0328,0.8789,0.8537,1.0634,-0.1845
+calzado,SARIMAX + exóg.,1.0460,0.8934,0.8647,1.0669,-0.1528
+calzado,TSB,1.0705,0.9163,0.8825,1.0758,-0.1142
+calzado,Media móvil 28,1.0759,0.9171,0.8790,1.0878,-0.1141
+calzado,Prophet,1.0786,0.9219,0.9056,1.0793,-0.0346
+calzado,Prophet + exóg.,1.0918,0.9299,0.9128,1.1021,-0.0449
+calzado,Ingenuo estacional,1.3026,1.0750,1.0158,1.4486,-0.0237

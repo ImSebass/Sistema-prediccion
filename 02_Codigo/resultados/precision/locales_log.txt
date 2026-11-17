@@ -1,0 +1,2 @@
+{"procesos": 2, "estrategia": "dinamico", "modelos": ["sarimax_exog"], "tareas": 1440, "t_total": 895.9789046509995, "t_comp_max": 895.9725243799994, "t_comp_media": 895.9712974519998, "desbalance": 1.000001369383151, "t_comunicacion": 0.006341039999824716, "seg_tarea_mediana": 1.2601854644999548}
+tareas: 11520

@@ -1,0 +1,14 @@
+{
+  "lineas": 3280704,
+  "duplicados": 16092,
+  "sku_invalidos": 6497,
+  "devoluciones": 9737,
+  "precios_imputados": 13020,
+  "clientes_anonimizados": 974290,
+  "procesos": 2,
+  "t_total": 4.6368611569999985,
+  "t_comp_max": 4.427156704000026,
+  "t_comp_min": 4.2870509819999825,
+  "desbalance": 1.0160778497651717,
+  "t_comunicacion": 0.03655058099997177
+}

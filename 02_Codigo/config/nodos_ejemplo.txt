@@ -1,0 +1,7 @@
+# Hostfile de OpenMPI para el clúster de 4 nodos (red Gigabit).
+# slots = núcleos físicos por nodo. Para la estrategia híbrida usar
+#   mpirun --hostfile config/nodos_ejemplo.txt --map-by ppr:1:node -x OMP_NUM_THREADS=<núcleos> ...
+nodo01 slots=8
+nodo02 slots=8
+nodo03 slots=8
+nodo04 slots=8

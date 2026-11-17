@@ -1,0 +1,14 @@
+# Python 3.11+ (probado con 3.11 y 3.13)
+numpy>=1.26
+pandas>=2.2
+pyarrow>=15
+scipy>=1.12
+statsmodels>=0.14
+prophet>=1.1.5
+holidays>=0.50
+numba>=0.59
+mpi4py>=4.0          # requiere OpenMPI (apt install libopenmpi-dev openmpi-bin, o pip install openmpi)
+torch>=2.2           # build con CUDA para usar GPU NVIDIA
+matplotlib>=3.8
+pyyaml>=6
+pytest>=8

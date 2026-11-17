@@ -1,0 +1,3 @@
+{'t_entrenamiento': 63.570359944999836, 'pasos': 760, 'ventanas': 48244, 'dispositivo': 'cpu', 'seg_por_paso': 0.08364521045394716}
+{'t_entrenamiento': 66.66645152900037, 'pasos': 784, 'ventanas': 50164, 'dispositivo': 'cpu', 'seg_por_paso': 0.08503373919515353}
+{'t_entrenamiento': 70.16857997399984, 'pasos': 816, 'ventanas': 52084, 'dispositivo': 'cpu', 'seg_por_paso': 0.08599090683088216}

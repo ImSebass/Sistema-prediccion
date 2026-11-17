@@ -1,0 +1,7 @@
+motor bloque 1 24.71 1.0
+motor bloque 2 18.31 1.459
+motor ciclico 2 13.52 1.021
+motor dinamico 2 13.06 1.017
+hibrido 1 1 1.9
+hibrido 1 2 0.962
+hibrido 2 1 1.0

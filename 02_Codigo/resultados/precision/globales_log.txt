@@ -1,0 +1,9 @@
+{'t_entrenamiento': 59.45894030599993, 'pasos': 760, 'ventanas': 48244, 'dispositivo': 'cpu', 'seg_por_paso': 0.07823544777105254, 'origen': 828, 'variante': 'lstm', 't_total': 62.049681634999615}
+{'t_entrenamiento': 63.75636359700002, 'pasos': 760, 'ventanas': 48244, 'dispositivo': 'cpu', 'seg_por_paso': 0.0838899521013158, 'origen': 828, 'variante': 'lstm_exog', 't_total': 64.13359308200006}
+{'t_entrenamiento': 65.25807978199964, 'pasos': 760, 'ventanas': 48244, 'dispositivo': 'cpu', 'seg_por_paso': 0.08586589444999952, 'origen': 828, 'variante': 'hibrido', 't_total': 65.62199073099964}
+{'t_entrenamiento': 63.68502031800017, 'pasos': 784, 'ventanas': 50164, 'dispositivo': 'cpu', 'seg_por_paso': 0.08123089326275532, 'origen': 856, 'variante': 'lstm', 't_total': 63.94273562900025}
+{'t_entrenamiento': 68.90800944600005, 'pasos': 784, 'ventanas': 50164, 'dispositivo': 'cpu', 'seg_por_paso': 0.08789286919132659, 'origen': 856, 'variante': 'lstm_exog', 't_total': 69.29713538499982}
+{'t_entrenamiento': 67.3501472830003, 'pasos': 784, 'ventanas': 50164, 'dispositivo': 'cpu', 'seg_por_paso': 0.08590580010586772, 'origen': 856, 'variante': 'hibrido', 't_total': 67.72650913899997}
+{'t_entrenamiento': 65.01356336599974, 'pasos': 816, 'ventanas': 52084, 'dispositivo': 'cpu', 'seg_por_paso': 0.07967348451715654, 'origen': 884, 'variante': 'lstm', 't_total': 65.2754598370002}
+{'t_entrenamiento': 69.50827473299978, 'pasos': 816, 'ventanas': 52084, 'dispositivo': 'cpu', 'seg_por_paso': 0.08518170923161737, 'origen': 884, 'variante': 'lstm_exog', 't_total': 69.91586069099958}
+{'t_entrenamiento': 67.19251066600009, 'pasos': 816, 'ventanas': 52084, 'dispositivo': 'cpu', 'seg_por_paso': 0.08234376307107855, 'origen': 884, 'variante': 'hibrido', 't_total': 67.58669383199958}

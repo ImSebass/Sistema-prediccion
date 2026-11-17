@@ -1,0 +1,1 @@
+{'alertas': 351, 'criticas': 154, 't_entrenamiento': 70.76962125699993, 'pasos': 2248, 'ventanas': 143788, 'dispositivo': 'cpu', 'seg_por_paso': 0.03148114824599641}
